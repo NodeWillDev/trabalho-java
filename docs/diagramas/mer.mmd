@@ -1,0 +1,42 @@
+erDiagram
+    CATEGORIA {
+        INT id PK
+        VARCHAR nome
+        VARCHAR descricao
+    }
+    USUARIO {
+        INT id PK
+        VARCHAR nome
+        VARCHAR email
+        VARCHAR telefone
+        VARCHAR cpf
+    }
+    LIVRO {
+        INT id PK
+        VARCHAR titulo
+        VARCHAR autor
+        VARCHAR isbn
+        INT ano_publicacao
+        INT quantidade
+        INT categoria_id FK
+    }
+    EMPRESTIMO {
+        INT id PK
+        DATE data_emprestimo
+        DATE data_devolucao
+        VARCHAR status
+        INT usuario_id FK
+        INT livro_id FK
+    }
+    RESERVA {
+        INT id PK
+        DATE data_reserva
+        VARCHAR status
+        INT usuario_id FK
+        INT livro_id FK
+    }
+    CATEGORIA ||--o{ LIVRO : classifica
+    USUARIO ||--o{ EMPRESTIMO : realiza
+    LIVRO ||--o{ EMPRESTIMO : participa
+    USUARIO ||--o{ RESERVA : realiza
+    LIVRO ||--o{ RESERVA : possui
